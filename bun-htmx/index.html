@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- https://htmx.org  -->
+  <script src="https://unpkg.com/htmx.org@1.9.5"></script>
+  <!-- https://hyperscript.org -->
+  <script src="https://unpkg.com/hyperscript.org@0.9.11"></script>
+  <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
+  <!-- https://picocss.com -->
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css"> -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+  <title>Bun x HTMX</title>
+</head>
+<style>
+  .contactButton {
+    width: 100%;
+    background-color: #7079f0 !important;
+    color: white;
+    font-family: inherit;
+    padding: 0.45em;
+    padding-left: 1.0em;
+    font-size: 17px;
+    font-weight: 500;
+    border-radius: 0.9em;
+    border: none;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    box-shadow: inset 0 0 1.6em -0.6em #714da6;
+    overflow: hidden;
+    position: relative;
+    height: 2.8em;
+    padding-right: 3em;
+  }
+
+  .iconButton {
+    margin-left: 1em;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.2em;
+    width: 2.2em;
+    border-radius: 0.7em;
+    box-shadow: 0.1em 0.1em 0.6em 0.2em #7a8cf3;
+    right: 0.3em;
+    transition: all 0.3s;
+  }
+
+  .contactButton:hover {
+    transform: translate(-0.05em, -0.05em);
+    box-shadow: 0.15em 0.15em #5566c2;
+  }
+
+  .contactButton:active {
+    transform: translate(0.05em, 0.05em);
+    box-shadow: 0.05em 0.05em #5566c2;
+  }
+</style>
+
+<body class="bg-black text-white px-8 container w-2xl mx-auto">
+
+  <hgroup class="py-20">
+    <h1 class="text-3xl font-bold">Bun x HTMX</h1>
+  </hgroup>
+  <main class="">
+    <form hx-post="/todos" hx-target="#todos" hx-ext="json-enc" _="on submit target.reset()">
+      <label for="todo" class="font-semibold text-base">New Todo</label>
+      <input class="mt-6 text-[#8707ff] border-2 border-[#8707ff] rounded-lg px-6 py-3 bg-transparent w-full" id="todo"
+        name="todo" type="text" aria-label="Create Todo" placeholder="New todo">
+
+      <button type="submit" class="contactButton w-full my-10">
+        Create
+        <div class="iconButton">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="none" d="M0 0h24v24H0z"></path>
+            <path fill="currentColor"
+              d="M16.172 11l-5.364-5.364 1.414-1.414L20 12l-7.778 7.778-1.414-1.414L16.172 13H4v-2z"></path>
+          </svg>
+        </div>
+      </button>
+    </form>
+    <section id="todos" hx-get="/todos" hx-trigger="load">
+    </section>
+  </main>
+</body>
+
+</html>
