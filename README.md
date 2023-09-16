@@ -1,12 +1,12 @@
-# bun-study
+# bun Study 
 
-To install dependencies:
+安装依赖
 
 ```bash
 bun install
 ```
 
-To run:
+运行文件
 
 ```bash
 bun run src/index.ts
